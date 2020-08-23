@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Data.Entity;
+using MovieRentalApp.ViewModels;
 
 namespace MovieRentalApp.Controllers
 {
@@ -28,6 +29,14 @@ namespace MovieRentalApp.Controllers
             var customers = _context.Customers.Include(m => m.MembershipType).ToList();
             return View(customers);
         }
-        
+
+        public ActionResult CustomerForm()
+        {
+            var viewmodel = new CustomerViewModel
+            {
+                MembershipTypes = _context.MembershipTypes.ToList()
+            };
+            return View(viewmodel);
+        }
     }
 }
