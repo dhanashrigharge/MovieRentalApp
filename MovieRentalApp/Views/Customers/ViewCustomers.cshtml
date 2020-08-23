@@ -1,0 +1,27 @@
+﻿@model IEnumerable<MovieRentalApp.Models.Customer>
+@{
+    ViewBag.Title = "ViewCustomers";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ViewCustomers</h2>
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <td><b>Customer</b></td>
+            <td><b>Membership Type</b></td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var customer in Model)
+        {
+        <tr>
+            <td>@customer.Name</td>
+            <td>@customer.MembershipType.Name</td>
+
+        </tr>
+        }
+    </tbody>
+</table>
+
