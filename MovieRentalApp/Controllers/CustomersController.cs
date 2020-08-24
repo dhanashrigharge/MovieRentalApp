@@ -35,6 +35,7 @@ namespace MovieRentalApp.Controllers
         {
             var viewmodel = new CustomerViewModel
             {
+                Customer=new Customer(),
                 MembershipTypes = _context.MembershipTypes.ToList()
             };
             return View(viewmodel);
@@ -54,13 +55,20 @@ namespace MovieRentalApp.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Save(Customer customer)
-        {       
-            if (customer.Id == 0)
+        {
+            if (!ModelState.IsValid)
             {
-                _context.Customers.Add(customer);
-                
+                var viewmodel = new CustomerViewModel
+                {
+                    Customer= customer,
+                    MembershipTypes = _context.MembershipTypes.ToList()
+                };
+                return View("CustomerForm", viewmodel);
             }
+            if (customer.Id == 0)           
+                _context.Customers.Add(customer);        
             else
             {
                 var customerInDb = _context.Customers.SingleOrDefault(c => c.Id == customer.Id);
