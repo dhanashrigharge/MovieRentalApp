@@ -26,9 +26,8 @@ namespace MovieRentalApp.Controllers
 
         // GET: Customers
         public ActionResult ViewCustomers()
-        {
-            var customers = _context.Customers.Include(m => m.MembershipType).ToList();
-            return View(customers);
+        {           
+            return View();
         }
 
         public ActionResult CustomerForm()
