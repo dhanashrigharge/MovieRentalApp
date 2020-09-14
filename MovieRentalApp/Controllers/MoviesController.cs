@@ -21,6 +21,7 @@ namespace MovieRentalApp.Controllers
             _context.Dispose();
         }
         // GET: Movies
+        [Authorize(Roles ="CanAccessMovies")]
         public ActionResult NewMovie()
         {
             var viewmodel = new MovieViewModel()
@@ -42,8 +43,9 @@ namespace MovieRentalApp.Controllers
 
         public ActionResult ViewMovies()
         {
-            var movies = _context.Movies.Include(g => g.Genre).ToList();
-            return View(movies);
+            if (User.IsInRole("CanManageMovies"))
+                return View("ViewMovies");
+            return View("ReadOnlyList");
         }
 
         [HttpPost]

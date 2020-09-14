@@ -26,7 +26,7 @@ namespace MovieRentalApp.Controllers
 
         // GET: Customers
         public ActionResult ViewCustomers()
-        {           
+        {   
             return View();
         }
 
