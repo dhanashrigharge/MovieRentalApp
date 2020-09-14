@@ -56,7 +56,7 @@ namespace MovieRentalApp
 
             app.UseFacebookAuthentication(
                appId: "316958529564057",
-               appSecret: "9ee170eb8fc3d70ff45d53c385b1b85a");
+               appSecret: "");
 
             //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
             //{
